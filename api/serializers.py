@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Tag, Blog
 from django.contrib.auth.models import User
 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -12,10 +13,12 @@ class UserSerializer(serializers.ModelSerializer):
         user =User.objects.create_user(**validated_data)
         return user
 
+
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
         fields = ('id', 'name')
+
 
 class BlogSerializer(serializers.ModelSerializer):
     tags = TagSerializer(many=True, read_only=True)
